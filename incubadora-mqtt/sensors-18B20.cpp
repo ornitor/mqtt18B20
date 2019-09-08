@@ -36,7 +36,10 @@ void LE18B20()
 {
       sensors18B20.requestTemperatures();
       for(int i=0;i<ntemp;i++){
-            temp[i] = sensors18B20.getTempC(sensorTemp[i]);
+            float t = sensors18B20.getTempC(sensorTemp[i]);
+            if (t > 0 ) temp[i] = t;
+            if(temp[i] < tmin[i]) tmin[i] = temp[i];
+            if(temp[i] > tmax[i]) tmax[i] = temp[i];
     }
 }
 
